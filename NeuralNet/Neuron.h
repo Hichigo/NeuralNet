@@ -27,4 +27,5 @@ private:
 	/* VARIABLE */
 
 	/* FUNCTIONS */
+	double Neuron::randomDoubleRange(double min, double max);
 };

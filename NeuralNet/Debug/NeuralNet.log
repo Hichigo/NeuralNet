@@ -1,2 +1,8 @@
-﻿  main.cpp
+﻿  Neuron.cpp
+  Создание кода...
+  Пропуск... (изменения не обнаружены)
+  main.cpp
+  NeuralNet.cpp
+  Layer.cpp
+  LINK : не найден или не выполнена сборка D:\Projects\MSVS\NeuralNet\Debug\NeuralNet.exe при последней инкрементной компоновке; выполняется полная компоновка
   NeuralNet.vcxproj -> D:\Projects\MSVS\NeuralNet\Debug\NeuralNet.exe
