@@ -9,8 +9,8 @@ NeuralNet::NeuralNet()
 NeuralNet::NeuralNet(vector<int> neuronEachLayer, vector<double> input, vector<double> targ)
 {
 	srand((unsigned)time(nullptr));
-	layers.resize(neuronEachLayer.size());
 	_numLayers = neuronEachLayer.size();
+	layers.resize(_numLayers);
 	target = targ;
 	learnRate = 0.5;
 	_neuronEachLayer = neuronEachLayer;
