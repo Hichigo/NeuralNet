@@ -3,8 +3,8 @@ using namespace std;
 
 void main() 
 {
-	const int numLayers = 4;
-	int a[numLayers] = { 2, 2, 5, 4 };
+	const int numLayers = 6;
+	int a[numLayers] = { 2, 4, 4, 2, 4, 4 };
 	double input[2] = { 1.5, 0 };
 
 	vector<double> ans;
@@ -17,8 +17,8 @@ void main()
 	
 	net.training();
 	
-	cout << net.layers[3].neurons[0].value << endl;
-	cout << net.layers[3].neurons[1].value << endl;
-	cout << net.layers[3].neurons[2].value << endl;
-	cout << net.layers[3].neurons[3].value << endl;
+	cout << net.layers[numLayers - 1].neurons[0].value << endl;
+	cout << net.layers[numLayers - 1].neurons[1].value << endl;
+	cout << net.layers[numLayers - 1].neurons[2].value << endl;
+	cout << net.layers[numLayers - 1].neurons[3].value << endl;
 }
