@@ -15,7 +15,7 @@ NeuralNet::NeuralNet(int numLayers, int neuronEachLayer[], double input[], vecto
 
 	for (size_t i = 0; i < numLayers; i++)
 	{
-		int nextNumNeuron = i == numLayers - 1 ? 0 : neuronEachLayer[i + 1];
+		int nextNumNeuron = (i == (numLayers - 1)) ? 0 : neuronEachLayer[i + 1];
 		layers[i].init(neuronEachLayer[i], nextNumNeuron, i);
 		_neuronEachLayer.push_back(neuronEachLayer[i]);
 		

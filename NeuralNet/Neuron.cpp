@@ -49,13 +49,14 @@ void Neuron::calculateError(vector<Neuron> * n)
 
 void Neuron::updateWeights(vector<Neuron>* n, double learnRate)
 {
+	/* May be this there mistake */
 	size_t i;
 	for (i = 0; i < n->size(); i++)
 	{
 		weights[i] += learnRate * n->at(i).error * value;
 	}
 
-	offset += learnRate * n->at(index).error;
+	offset += learnRate * /*n->at(index).*/error; //?
 }
 
 double Neuron::sigmoid(double val)
