@@ -16,7 +16,7 @@ void Neuron::setWeights()
 {
 	for (size_t i = 0; i < weights.size(); i++)
 	{
-		weights[i] = 0.5;
+		weights[i] = randomDoubleRange(-0.5, 0.5);
 	}
 }
 
@@ -71,6 +71,6 @@ double Neuron::sigmoidDerivative(double val)
 
 double Neuron::randomDoubleRange(double min, double max)
 {
-	double r = rand() / RAND_MAX;
+	double r = (double)rand() / (double)RAND_MAX;
 	return min + r * (max - min);
 }

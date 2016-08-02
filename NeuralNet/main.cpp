@@ -4,7 +4,7 @@ using namespace std;
 void main() 
 {
 	const int numLayers = 4;
-	int a[numLayers] = { 2, 4, 5, 4 };
+	int a[numLayers] = { 2, 2, 5, 4 };
 	double input[2] = { 1.5, 0 };
 
 	vector<double> ans;

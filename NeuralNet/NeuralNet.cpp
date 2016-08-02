@@ -8,6 +8,7 @@ NeuralNet::NeuralNet()
 
 NeuralNet::NeuralNet(int numLayers, int neuronEachLayer[], double input[], vector<double> targ)
 {
+	srand((unsigned)time(nullptr));
 	layers.resize(numLayers);
 	_numLayers = numLayers;
 	target = targ;
@@ -33,7 +34,7 @@ NeuralNet::~NeuralNet()
 
 void NeuralNet::training()
 {
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		feedForward();
 		backPropagation();
@@ -44,7 +45,6 @@ void NeuralNet::feedForward()
 {
 	for (size_t i = 0; i < _numLayers - 1; i++)
 	{
-		cout << "________" << endl;
 		for (size_t j = 0; j < layers[i + 1].neurons.size(); j++)
 		{
 			layers[i + 1].neurons[j].calculateValue(&layers[i].neurons);
