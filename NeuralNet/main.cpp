@@ -17,8 +17,13 @@ void main()
 	
 	net.training();
 	
-	cout << net.layers[numLayers - 1].neurons[0].value << endl;
-	cout << net.layers[numLayers - 1].neurons[1].value << endl;
-	cout << net.layers[numLayers - 1].neurons[2].value << endl;
-	cout << net.layers[numLayers - 1].neurons[3].value << endl;
+	
+	for (auto begin = net.layers[numLayers - 1].neurons.begin(); begin != net.layers[numLayers - 1].neurons.end(); begin++)
+	{
+		cout << (*begin).value << endl;
+	}
+	//cout << net.layers[numLayers - 1].neurons[0].value << endl;
+	//cout << net.layers[numLayers - 1].neurons[1].value << endl;
+	//cout << net.layers[numLayers - 1].neurons[2].value << endl;
+	//cout << net.layers[numLayers - 1].neurons[3].value << endl;
 }
