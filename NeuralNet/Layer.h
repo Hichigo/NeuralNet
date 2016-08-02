@@ -12,7 +12,7 @@ public:
 	Layer();
 	~Layer();
 	void init(int numNeurons, int nextNumNeuron, int indexLayer);
-	void initInput(double inp[]);
+	void initInput(vector<double> inp);
 	
 
 private:

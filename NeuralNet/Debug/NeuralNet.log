@@ -1,2 +1,5 @@
-﻿  main.cpp
-  NeuralNet.vcxproj -> E:\Project\MSVS\NeuralNet\Debug\NeuralNet.exe
+﻿  NeuralNet.cpp
+d:\projects\msvs\neuralnet\neuralnet\neuralnet.cpp(19): warning C4018: <: несоответствие типов со знаком и без знака
+d:\projects\msvs\neuralnet\neuralnet\neuralnet.cpp(48): warning C4018: <: несоответствие типов со знаком и без знака
+d:\projects\msvs\neuralnet\neuralnet\neuralnet.cpp(70): warning C4018: <: несоответствие типов со знаком и без знака
+  NeuralNet.vcxproj -> D:\Projects\MSVS\NeuralNet\Debug\NeuralNet.exe

@@ -6,19 +6,21 @@ NeuralNet::NeuralNet()
 {
 }
 
-NeuralNet::NeuralNet(int numLayers, int neuronEachLayer[], double input[], vector<double> targ)
+NeuralNet::NeuralNet(vector<int> neuronEachLayer, vector<double> input, vector<double> targ)
 {
 	srand((unsigned)time(nullptr));
-	layers.resize(numLayers);
-	_numLayers = numLayers;
+	layers.resize(neuronEachLayer.size());
+	_numLayers = neuronEachLayer.size();
 	target = targ;
 	learnRate = 0.5;
+	_neuronEachLayer = neuronEachLayer;
 
-	for (size_t i = 0; i < numLayers; i++)
+
+	for (size_t i = 0; i < _numLayers; i++)
 	{
-		int nextNumNeuron = (i == (numLayers - 1)) ? 0 : neuronEachLayer[i + 1];
+		int nextNumNeuron = (i == (_numLayers - 1)) ? 0 : neuronEachLayer[i + 1];
 		layers[i].init(neuronEachLayer[i], nextNumNeuron, i);
-		_neuronEachLayer.push_back(neuronEachLayer[i]);
+		
 		
 		if(i == 0)
 		{

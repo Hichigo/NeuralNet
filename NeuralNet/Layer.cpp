@@ -24,7 +24,7 @@ void Layer::init(int numNeurons, int nextNumNeuron, int indexLayer)
 	}
 }
 
-void Layer::initInput(double inp[])
+void Layer::initInput(vector<double> inp)
 {
 	if (!index)
 	{

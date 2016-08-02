@@ -10,7 +10,7 @@ public:
 	
 	/* FUNCTIONS */
 	NeuralNet();
-	NeuralNet(int numLayers, int neuronEachLayer[], double input[], vector<double> targ);
+	NeuralNet(vector<int> neuronEachLayer, vector<double> input, vector<double> targ);
 	~NeuralNet();
 	void training();
 
