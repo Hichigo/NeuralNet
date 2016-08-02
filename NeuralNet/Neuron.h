@@ -4,6 +4,11 @@
 #include <ctime>
 using namespace std;
 
+struct DataNeuroNet {
+	vector<double> input;
+	vector<double> output;
+};
+
 class Neuron
 {
 public:

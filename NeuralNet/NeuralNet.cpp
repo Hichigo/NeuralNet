@@ -21,7 +21,6 @@ NeuralNet::NeuralNet(vector<int> neuronEachLayer, vector<double> input, vector<d
 		int nextNumNeuron = (i == (_numLayers - 1)) ? 0 : neuronEachLayer[i + 1];
 		layers[i].init(neuronEachLayer[i], nextNumNeuron, i);
 		
-		
 		if(i == 0)
 		{
 			layers[i].initInput(input);
