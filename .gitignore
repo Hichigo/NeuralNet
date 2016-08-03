@@ -28,5 +28,7 @@
 *.out
 *.app
 
-# Åemporary files
+# Temporary files
 *.opendb
+*.suo
+NeuralNet.VC.db
