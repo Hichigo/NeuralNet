@@ -6,25 +6,19 @@ NeuralNet::NeuralNet()
 {
 }
 
-NeuralNet::NeuralNet(vector<int> neuronEachLayer, vector<double> input, vector<double> targ)
+NeuralNet::NeuralNet(vector<int> neuronEachLayer, vector<DataNeuroNet> dataTrain)
 {
 	srand((unsigned)time(nullptr));
 	_numLayers = neuronEachLayer.size();
 	layers.resize(_numLayers);
-	target = targ;
+	_dataTrain = dataTrain;
 	learnRate = 0.5;
 	_neuronEachLayer = neuronEachLayer;
 
-
-	for (size_t i = 0; i < _numLayers; i++)
+	for (int i = 0; i < _numLayers; i++)
 	{
 		int nextNumNeuron = (i == (_numLayers - 1)) ? 0 : neuronEachLayer[i + 1];
 		layers[i].init(neuronEachLayer[i], nextNumNeuron, i);
-		
-		if(i == 0)
-		{
-			layers[i].initInput(input);
-		}
 	}
 }
 
@@ -35,16 +29,96 @@ NeuralNet::~NeuralNet()
 
 void NeuralNet::training()
 {
-	for (int i = 0; i < 1000; i++)
+	//double err;
+	int sample = 0;
+	const int MAX_SAMPLE = _dataTrain.size();
+
+	
+
+	for (int i = 0; i < 10000; i++)
 	{
+		if (++sample == MAX_SAMPLE) sample = 0;
+
+		_input = _dataTrain[sample].input;
+		_target = _dataTrain[sample].output;
+		layers[0].initInput(_input);
+
 		feedForward();
+		
+		/*
+		err = 0.0;
+		for (auto begin = layers[_numLayers - 1].neurons.begin(); begin != layers[_numLayers - 1].neurons.end(); begin++)
+		{
+			err += (_target[(*begin).index] - (*begin).value) * (_target[(*begin).index] - (*begin).value);
+		}
+		cout << err << endl;
+		*/
+
 		backPropagation();
 	}
 }
 
+double NeuralNet::checkCorrect()
+{
+	int sample, sum = 0;
+	const int MAX_SAMPLE = _dataTrain.size();
+	vector<double> actual;
+	actual.resize(layers[_numLayers - 1].neurons.size());
+
+	for (sample = 0; sample < MAX_SAMPLE; sample++)
+	{
+		sampleByIndex(sample);
+
+		for (size_t i = 0; i < layers[_numLayers - 1].neurons.size(); i++)
+		{
+			actual[i] = layers[_numLayers - 1].neurons[i].value;
+		}
+
+
+		if (action(&actual) != action(&_target))
+		{
+			cout << "WRONG!" << endl;
+		}
+		else
+		{
+			sum++;
+		}
+		
+	}
+
+	return ((double)sum / (double)MAX_SAMPLE) * 100.0;
+}
+
+void NeuralNet::sampleByIndex(int i)
+{
+	_input = _dataTrain[i].input;
+	_target = _dataTrain[i].output;
+	layers[0].initInput(_input);
+
+	feedForward();
+}
+
+int NeuralNet::action(vector<double>* v)
+{
+	size_t index, result = 0;
+
+	double max = v->at(result);
+
+	for (index = 1; index < v->size(); index++)
+	{
+		if (v->at(index) > max)
+		{
+			max = v->at(index);
+			result = index;
+		}
+	}
+
+	return result;
+}
+
 void NeuralNet::feedForward()
 {
-	for (size_t i = 0; i < _numLayers - 1; i++)
+	for (int i = 0; i < _numLayers - 1; i++)
 	{
 		for (size_t j = 0; j < layers[i + 1].neurons.size(); j++)
 		{
@@ -61,12 +135,12 @@ void NeuralNet::backPropagation()
 	for (size_t i = 0; i < numLastNeurons; i++)
 	{
 		double actual = layers[_numLayers - 1].neurons[i].value;
-		layers[_numLayers - 1].neurons[i].error = (target[i] - actual) * sigmoidDerivative(actual);
+		layers[_numLayers - 1].neurons[i].error = (_target[i] - actual) * sigmoidDerivative(actual);
 	}
 	
 	for (size_t i = endLayer; i != -1; i--)
 	{
-		for (size_t j = 0; j < _neuronEachLayer[i]; j++)
+		for (int j = 0; j < _neuronEachLayer[i]; j++)
 		{
 			layers[i].neurons[j].calculateError(&layers[i + 1].neurons);
 			layers[i].neurons[j].updateWeights(&layers[i + 1].neurons, learnRate);
