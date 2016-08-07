@@ -35,7 +35,7 @@ void NeuralNet::training()
 
 	
 
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 100000; i++)
 	{
 		if (++sample == MAX_SAMPLE) sample = 0;
 
@@ -45,6 +45,11 @@ void NeuralNet::training()
 
 		feedForward();
 		
+		/*cout << layers[layers.size() - 1].neurons[0].value << endl;
+		cout << layers[layers.size() - 1].neurons[1].value << endl;
+		cout << layers[layers.size() - 1].neurons[2].value << endl;
+		cout << layers[layers.size() - 1].neurons[3].value << endl;*/
+
 		/*
 		err = 0.0;
 		for (auto begin = layers[_numLayers - 1].neurons.begin(); begin != layers[_numLayers - 1].neurons.end(); begin++)

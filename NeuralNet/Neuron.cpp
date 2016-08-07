@@ -4,7 +4,7 @@
 Neuron::Neuron()
 {
 	value = 0.0;
-	offset = 1.0;
+	offset = 0.5;
 }
 
 
@@ -16,7 +16,7 @@ void Neuron::setWeights()
 {
 	for (size_t i = 0; i < weights.size(); i++)
 	{
-		weights[i] = randomDoubleRange(-0.5, 0.5);
+		weights[i] = 0.5; // randomDoubleRange(-0.5, 0.5);
 	}
 }
 
