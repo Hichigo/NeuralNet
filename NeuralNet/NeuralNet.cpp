@@ -12,7 +12,7 @@ NeuralNet::NeuralNet(vector<int> neuronEachLayer, vector<DataNeuroNet> dataTrain
 	_numLayers = neuronEachLayer.size();
 	layers.resize(_numLayers);
 	_dataTrain = dataTrain;
-	learnRate = 0.5;
+	learnRate = 0.3;
 	_neuronEachLayer = neuronEachLayer;
 
 	for (int i = 0; i < _numLayers; i++)
@@ -29,15 +29,24 @@ NeuralNet::~NeuralNet()
 
 void NeuralNet::training()
 {
-	//double err;
 	int sample = 0;
 	const int MAX_SAMPLE = _dataTrain.size();
 
+	//int d = 0;
 	
-
+	//while(checkCorrect() != 100)
 	for (int i = 0; i < 100000; i++)
 	{
-		if (++sample == MAX_SAMPLE) sample = 0;
+		if (++sample == MAX_SAMPLE)
+		{
+			sample = 0;
+			//for (int j = 0; j < MAX_SAMPLE; j++)
+			//{
+			//	int random = rand() % MAX_SAMPLE;
+			//	swap(_dataTrain[j], _dataTrain[random]);
+			//}
+		}
+
 
 		_input = _dataTrain[sample].input;
 		_target = _dataTrain[sample].output;
@@ -60,6 +69,18 @@ void NeuralNet::training()
 		*/
 
 		backPropagation();
+		//d++;
+		//if (d % 10000 == 0)
+		//{
+		//	double k = checkCorrect();
+		//	
+		//	if (k <= 50)
+		//		learnRate += 0.3;
+		//	else
+		//		learnRate -= 0.1;
+		//	learnRate = (learnRate <= 0.0) ? 0.1 : learnRate;
+		//	cout << d << " " << k << " " << learnRate << endl;
+		//}
 	}
 }
 
@@ -72,17 +93,16 @@ double NeuralNet::checkCorrect()
 
 	for (sample = 0; sample < MAX_SAMPLE; sample++)
 	{
-		sampleByIndex(sample);
+		sampleByIndex(sample); // тут присваиваем новое значение _target
 
 		for (size_t i = 0; i < layers[_numLayers - 1].neurons.size(); i++)
 		{
 			actual[i] = layers[_numLayers - 1].neurons[i].value;
 		}
 
-
 		if (action(&actual) != action(&_target))
 		{
-			cout << "WRONG!" << endl;
+			//cout << "WRONG!" << endl;
 		}
 		else
 		{

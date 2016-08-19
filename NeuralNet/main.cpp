@@ -70,10 +70,10 @@ void main()
 	net.training();
 	cout << "--------" << endl;
 
-	for (int i = 0; i < data.size(); i++)
+	for (size_t i = 0; i < data.size(); i++)
 	{
 		net.sampleByIndex(i);
-		cout << "~~~~~~~~~~~~~~~~~" << endl;
+		cout << i << " ~~~~~~~~~~~~~~~~~" << endl;
 		for (auto begin = net.layers[layersData.size() - 1].neurons.begin(); begin != net.layers[layersData.size() - 1].neurons.end(); begin++)
 		{
 			cout << (*begin).value << endl;
